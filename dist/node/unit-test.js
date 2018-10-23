@@ -1,63 +1,63 @@
-'use strict';
 
-var _sinon = require('sinon');
 
-var _sinon2 = _interopRequireDefault(_sinon);
+let _sinon = require('sinon');
 
-var _collectionReference = require('./firebase/firestore/collection-reference');
+let _sinon2 = _interopRequireDefault(_sinon);
 
-var _collectionReference2 = _interopRequireDefault(_collectionReference);
+let _collectionReference = require('./firebase/firestore/collection-reference');
 
-var _documentReference = require('./firebase/firestore/document-reference');
+let _collectionReference2 = _interopRequireDefault(_collectionReference);
 
-var _documentReference2 = _interopRequireDefault(_documentReference);
+let _documentReference = require('./firebase/firestore/document-reference');
 
-var _documentSnapshot = require('./firebase/firestore/document-snapshot');
+let _documentReference2 = _interopRequireDefault(_documentReference);
 
-var _documentSnapshot2 = _interopRequireDefault(_documentSnapshot);
+let _documentSnapshot = require('./firebase/firestore/document-snapshot');
 
-var _fieldValue = require('./firebase/firestore/field-value');
+let _documentSnapshot2 = _interopRequireDefault(_documentSnapshot);
 
-var _fieldValue2 = _interopRequireDefault(_fieldValue);
+let _fieldValue = require('./firebase/firestore/field-value');
 
-var _firestore = require('./firebase/firestore');
+let _fieldValue2 = _interopRequireDefault(_fieldValue);
 
-var _firestore2 = _interopRequireDefault(_firestore);
+let _firestore = require('./firebase/firestore');
 
-var _ = require('./');
+let _firestore2 = _interopRequireDefault(_firestore);
 
-var _2 = _interopRequireDefault(_);
+let _ = require('./');
 
-var _querySnapshot = require('./firebase/firestore/query-snapshot');
+let _2 = _interopRequireDefault(_);
 
-var _querySnapshot2 = _interopRequireDefault(_querySnapshot);
+let _querySnapshot = require('./firebase/firestore/query-snapshot');
 
-var _query = require('./firebase/firestore/query');
+let _querySnapshot2 = _interopRequireDefault(_querySnapshot);
 
-var _query2 = _interopRequireDefault(_query);
+let _query = require('./firebase/firestore/query');
 
-var _firebase = require('firebase');
+let _query2 = _interopRequireDefault(_query);
 
-var _firebase2 = _interopRequireDefault(_firebase);
+let _firebase = require('firebase');
 
-var _fixtureData = require('./utils/test-helpers/fixture-data');
+let _firebase2 = _interopRequireDefault(_firebase);
 
-var _fixtureData2 = _interopRequireDefault(_fixtureData);
+let _fixtureData = require('./utils/test-helpers/fixture-data');
+
+let _fixtureData2 = _interopRequireDefault(_fixtureData);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+function _asyncToGenerator(fn) { return function () { let gen = fn.apply(this, arguments); return new Promise(((resolve, reject) => { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); })); }; }
 
 let mockFirebase;
 
-QUnit.module('Unit | mock-cloud-firestore', hooks => {
+QUnit.module('Unit | mock-cloud-firestore', (hooks) => {
   hooks.beforeEach(() => {
     mockFirebase = new _2.default((0, _fixtureData2.default)());
   });
 
   QUnit.module('CollectionReference', () => {
     QUnit.module('getter/setter: id', () => {
-      QUnit.test('should return collection identifier', assert => {
+      QUnit.test('should return collection identifier', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -72,7 +72,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('getter/setter: firestore', () => {
-      QUnit.test('should return the firestore the collection is in', assert => {
+      QUnit.test('should return the firestore the collection is in', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -87,7 +87,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('getter/setter: parent', () => {
-      QUnit.test('should return DocumentReference if this is a subcollection', assert => {
+      QUnit.test('should return DocumentReference if this is a subcollection', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -100,7 +100,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.ok(result instanceof _documentReference2.default);
       });
 
-      QUnit.test('should return null if there is no parent', assert => {
+      QUnit.test('should return null if there is no parent', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -116,7 +116,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: add', () => {
       QUnit.test('should add a new document', (() => {
-        var _ref = _asyncToGenerator(function* (assert) {
+        let _ref = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -138,7 +138,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: doc', () => {
-      QUnit.test('should return the document reference using an ID', assert => {
+      QUnit.test('should return the document reference using an ID', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -151,7 +151,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.ok(result instanceof _documentReference2.default);
       });
 
-      QUnit.test('should return the document reference using a path', assert => {
+      QUnit.test('should return the document reference using a path', (assert) => {
         assert.expect(2);
 
         // Arrange
@@ -165,7 +165,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.equal(result.id, 'user_b');
       });
 
-      QUnit.test('should throw an error when getting doc reference on an odd number of segment', assert => {
+      QUnit.test('should throw an error when getting doc reference on an odd number of segment', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -180,7 +180,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         }
       });
 
-      QUnit.test('should create document reference when not providing an ID', assert => {
+      QUnit.test('should create document reference when not providing an ID', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -195,7 +195,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: endAt', () => {
-      QUnit.test('should return an instance of Query', assert => {
+      QUnit.test('should return an instance of Query', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -210,7 +210,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: endBefore', () => {
-      QUnit.test('should return an instance of Query', assert => {
+      QUnit.test('should return an instance of Query', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -226,7 +226,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: get', () => {
       QUnit.test('should return the query snapshot', (() => {
-        var _ref2 = _asyncToGenerator(function* (assert) {
+        let _ref2 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -246,7 +246,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: limit', () => {
-      QUnit.test('should return an instance of Query', assert => {
+      QUnit.test('should return an instance of Query', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -261,7 +261,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: onSnapshot', () => {
-      QUnit.test('should return a function for unsubscribing', assert => {
+      QUnit.test('should return a function for unsubscribing', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -274,7 +274,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.ok(typeof result === 'function');
       });
 
-      QUnit.test('should fire callback', assert => {
+      QUnit.test('should fire callback', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -282,7 +282,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         const db = mockFirebase.firestore();
 
         // Act
-        db.collection('users').onSnapshot(snapshot => {
+        db.collection('users').onSnapshot((snapshot) => {
           // Assert
           assert.ok(snapshot instanceof _querySnapshot2.default);
           done();
@@ -291,7 +291,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: orderBy', () => {
-      QUnit.test('should return an instance of Query', assert => {
+      QUnit.test('should return an instance of Query', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -306,7 +306,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: startAfter', () => {
-      QUnit.test('should return an instance of Query', assert => {
+      QUnit.test('should return an instance of Query', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -321,7 +321,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: startAt', () => {
-      QUnit.test('should return an instance of Query', assert => {
+      QUnit.test('should return an instance of Query', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -336,7 +336,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: where', () => {
-      QUnit.test('should return an instance of Query', assert => {
+      QUnit.test('should return an instance of Query', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -353,7 +353,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
   QUnit.module('DocumentReference', () => {
     QUnit.module('getter/setter: id', () => {
-      QUnit.test('should return document identifier', assert => {
+      QUnit.test('should return document identifier', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -368,7 +368,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('getter/setter: firestore', () => {
-      QUnit.test('should return the firestore the document is in', assert => {
+      QUnit.test('should return the firestore the document is in', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -383,7 +383,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('getter/setter: parent', () => {
-      QUnit.test('should return CollectionReference of which the DocumentReference belongs to', assert => {
+      QUnit.test('should return CollectionReference of which the DocumentReference belongs to', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -398,7 +398,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: collection', () => {
-      QUnit.test('should return the collection reference of an ID', assert => {
+      QUnit.test('should return the collection reference of an ID', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -411,7 +411,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.ok(result instanceof _collectionReference2.default);
       });
 
-      QUnit.test('should return the collection reference of a path', assert => {
+      QUnit.test('should return the collection reference of a path', (assert) => {
         assert.expect(2);
 
         // Arrange
@@ -425,7 +425,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.equal(result.id, 'wew_so_deep');
       });
 
-      QUnit.test('should throw an error when getting collection reference on an even number of segment', assert => {
+      QUnit.test('should throw an error when getting collection reference on an even number of segment', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -443,7 +443,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: delete', () => {
       QUnit.test('should delete the document', (() => {
-        var _ref3 = _asyncToGenerator(function* (assert) {
+        let _ref3 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -465,7 +465,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should delete the document coming from a query', (() => {
-        var _ref4 = _asyncToGenerator(function* (assert) {
+        let _ref4 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -474,7 +474,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
           // Act
           querySnapshot.forEach((() => {
-            var _ref5 = _asyncToGenerator(function* (docSnapshot) {
+            let _ref5 = _asyncToGenerator(function* (docSnapshot) {
               yield docSnapshot.ref.delete();
             });
 
@@ -497,7 +497,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: get', () => {
       QUnit.test('should return the document snapshot', (() => {
-        var _ref6 = _asyncToGenerator(function* (assert) {
+        let _ref6 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -517,7 +517,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: onSnapshot', () => {
-      QUnit.test('should return a function for unsubscribing', assert => {
+      QUnit.test('should return a function for unsubscribing', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -530,7 +530,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.ok(typeof result === 'function');
       });
 
-      QUnit.test('should fire callback', assert => {
+      QUnit.test('should fire callback', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -538,7 +538,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         const db = mockFirebase.firestore();
 
         // Act
-        db.collection('users').doc('user_a').onSnapshot(snapshot => {
+        db.collection('users').doc('user_a').onSnapshot((snapshot) => {
           // Assert
           assert.ok(snapshot instanceof _documentSnapshot2.default);
           done();
@@ -548,7 +548,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: set', () => {
       QUnit.test('should set the data using the default options when it exist', (() => {
-        var _ref7 = _asyncToGenerator(function* (assert) {
+        let _ref7 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
@@ -559,7 +559,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
           yield ref.set({
             name: 'user_a',
             dad: db.collection('users').doc('user_b'),
-            modifiedOn: _firebase2.default.firestore.FieldValue.serverTimestamp()
+            modifiedOn: _firebase2.default.firestore.FieldValue.serverTimestamp(),
           });
 
           // Assert
@@ -577,7 +577,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should set the data using the default options when it does not exists', (() => {
-        var _ref8 = _asyncToGenerator(function* (assert) {
+        let _ref8 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
@@ -588,7 +588,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
           yield ref.set({
             dad: db.collection('users').doc('user_b'),
             modifiedOn: _firebase2.default.firestore.FieldValue.serverTimestamp(),
-            username: 'user_100'
+            username: 'user_100',
           });
 
           // Assert
@@ -606,7 +606,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should set the data using the merge option', (() => {
-        var _ref9 = _asyncToGenerator(function* (assert) {
+        let _ref9 = _asyncToGenerator(function* (assert) {
           assert.expect(7);
 
           // Arrange
@@ -617,7 +617,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
           yield ref.set({
             dad: db.collection('users').doc('user_b'),
             modifiedOn: _firebase2.default.firestore.FieldValue.serverTimestamp(),
-            name: 'user_a'
+            name: 'user_a',
           }, { merge: true });
 
           // Assert
@@ -629,7 +629,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
             dad,
             modifiedOn,
             name,
-            username
+            username,
           } = snapshot.data();
 
           assert.deepEqual(address, { home: 'San Francisco', work: 'Silicon Valley' });
@@ -649,7 +649,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: update', () => {
       QUnit.test('should update the data', (() => {
-        var _ref10 = _asyncToGenerator(function* (assert) {
+        let _ref10 = _asyncToGenerator(function* (assert) {
           assert.expect(9);
 
           // Arrange
@@ -663,7 +663,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
             modifiedOn: _firebase2.default.firestore.FieldValue.serverTimestamp(),
             pinnedBooks: _firebase2.default.firestore.FieldValue.arrayUnion('book_100'),
             pinnedFoods: _firebase2.default.firestore.FieldValue.arrayRemove('food_1'),
-            name: 'user_a'
+            name: 'user_a',
           });
 
           // Assert
@@ -677,7 +677,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
             name,
             pinnedBooks,
             pinnedFoods,
-            username
+            username,
           } = snapshot.data();
 
           assert.deepEqual(address, { home: 'San Francisco', work: 'Silicon Valley' });
@@ -697,7 +697,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should throw error when updating data that does not exist', (() => {
-        var _ref11 = _asyncToGenerator(function* (assert) {
+        let _ref11 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -723,7 +723,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
   QUnit.module('DocumentSnapshot', () => {
     QUnit.module('getter/setter: exists', () => {
       QUnit.test('should return true if data exists', (() => {
-        var _ref12 = _asyncToGenerator(function* (assert) {
+        let _ref12 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -743,7 +743,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should return false if data does not exists', (() => {
-        var _ref13 = _asyncToGenerator(function* (assert) {
+        let _ref13 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -765,7 +765,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('getter/setter: id', () => {
       QUnit.test('should return the identifier', (() => {
-        var _ref14 = _asyncToGenerator(function* (assert) {
+        let _ref14 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -787,7 +787,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('getter/setter: ref', () => {
       QUnit.test('should return the DocumentReference', (() => {
-        var _ref15 = _asyncToGenerator(function* (assert) {
+        let _ref15 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -809,7 +809,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: get', () => {
       QUnit.test('should return the specific field', (() => {
-        var _ref16 = _asyncToGenerator(function* (assert) {
+        let _ref16 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -829,12 +829,13 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should return the reference type field', (() => {
-        var _ref17 = _asyncToGenerator(function* (assert) {
+        let _ref17 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
           const db = mockFirebase.firestore();
-          const snapshot = yield db.collection('users').doc('user_a').collection('friends').doc('user_b').get();
+          const snapshot = yield db.collection('users').doc('user_a').collection('friends').doc('user_b')
+.get();
 
           // Act
           const reference = snapshot.get('reference');
@@ -854,7 +855,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should return the specific field using dot notation', (() => {
-        var _ref18 = _asyncToGenerator(function* (assert) {
+        let _ref18 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -874,7 +875,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should return undefined when field does not exist', (() => {
-        var _ref19 = _asyncToGenerator(function* (assert) {
+        let _ref19 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -896,7 +897,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: data', () => {
       QUnit.test('should return the data', (() => {
-        var _ref20 = _asyncToGenerator(function* (assert) {
+        let _ref20 = _asyncToGenerator(function* (assert) {
           assert.expect(4);
 
           // Arrange
@@ -908,7 +909,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
             address,
             age,
             createdOn,
-            username
+            username,
           } = snapshot.data();
 
           // Assert
@@ -924,12 +925,13 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should return the data and match any reference type field appropriately', (() => {
-        var _ref21 = _asyncToGenerator(function* (assert) {
+        let _ref21 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
           const db = mockFirebase.firestore();
-          const snapshot = yield db.collection('users').doc('user_a').collection('friends').doc('user_b').get();
+          const snapshot = yield db.collection('users').doc('user_a').collection('friends').doc('user_b')
+.get();
 
           // Act
           const { reference } = snapshot.data();
@@ -938,9 +940,230 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
           const referenceSnapshot = yield reference.get();
           const { age, createdOn, username } = referenceSnapshot.data();
 
-          assert.equal(age, 10);
-          assert.deepEqual(createdOn.toDate(), new Date('2017-01-01'));
-          assert.equal(username, 'user_b');
+          QUnit.module('function: get', () => {
+            QUnit.test('should return the document snapshot', async (assert) => {
+              assert.expect(1);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+
+              // Act
+              const result = await db.collection('users').doc('user_a').get();
+
+              // Assert
+              assert.ok(result instanceof _documentSnapshot2.default);
+            });
+          });
+
+          QUnit.module('function: onSnapshot', () => {
+            QUnit.test('should return a function for unsubscribing', (assert) => {
+              assert.expect(1);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+
+              // Act
+              const result = db.collection('users').doc('user_a').onSnapshot(() => {});
+
+              // Assert
+              assert.ok(typeof result === 'function');
+            });
+
+            QUnit.test('should fire callback', (assert) => {
+              assert.expect(1);
+
+              // Arrange
+              const done = assert.async();
+              const db = mockFirebase.firestore();
+
+              // Act
+              db.collection('users').doc('user_a').onSnapshot((snapshot) => {
+                // Assert
+                assert.ok(snapshot instanceof _documentSnapshot2.default);
+                done();
+              });
+            });
+          });
+
+          QUnit.module('function: set', () => {
+            QUnit.test('should set the data using the non-merge option', async (assert) => {
+              assert.expect(8);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+              const ref = db.collection('users').doc('user_a');
+
+              // Act
+              await ref.set({
+                'address.home': 'San Francisco',
+                age: null,
+                name: 'user_a',
+                dad: db.collection('users').doc('user_b'),
+                modifiedOn: _firebase2.default.firestore.FieldValue.serverTimestamp(),
+                pinnedBooks: _firebase2.default.firestore.FieldValue.arrayUnion('book_100'),
+                pinnedFoods: _firebase2.default.firestore.FieldValue.arrayRemove('food_1'),
+              });
+
+              // Assert
+              const snapshot = await ref.get();
+              const data = snapshot.data();
+
+              assert.equal(Object.keys(data).length, 7);
+              assert.equal(data['address.home'], 'San Francisco');
+              assert.equal(data.age, null);
+              assert.deepEqual(data.dad, db.collection('users').doc('user_b'));
+              assert.ok(data.modifiedOn.toDate() instanceof Date);
+              assert.deepEqual(data.pinnedBooks, ['book_100']);
+              assert.deepEqual(data.pinnedFoods, []);
+              assert.equal(data.name, 'user_a');
+            });
+
+            QUnit.test('should set the data using the merge option', async (assert) => {
+              assert.expect(11);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+              const ref = db.collection('users').doc('user_a');
+
+              // Act
+              await ref.set({
+                'address.home': 'San Francisco',
+                name: 'user_a',
+                dad: db.collection('users').doc('user_b'),
+                modifiedOn: _firebase2.default.firestore.FieldValue.serverTimestamp(),
+                pinnedBooks: _firebase2.default.firestore.FieldValue.arrayUnion('book_100'),
+                pinnedFoods: _firebase2.default.firestore.FieldValue.arrayRemove('food_1'),
+              }, { merge: true });
+
+              // Assert
+              const snapshot = await ref.get();
+              const data = snapshot.data();
+
+              assert.equal(Object.keys(data).length, 10);
+              assert.deepEqual(data.address, { home: 'San Francisco', work: 'Silicon Valley' });
+              assert.equal(data['address.home'], 'San Francisco');
+              assert.equal(data.age, 15);
+              assert.deepEqual(data.createdOn.toDate(), new Date('2017-01-01'));
+              assert.deepEqual(data.dad, db.collection('users').doc('user_b'));
+              assert.ok(data.modifiedOn.toDate() instanceof Date);
+              assert.deepEqual(data.pinnedBooks, ['book_1', 'book_2', 'book_100']);
+              assert.deepEqual(data.pinnedFoods, ['food_2']);
+              assert.equal(data.name, 'user_a');
+              assert.equal(data.username, 'user_a');
+            });
+
+            QUnit.test('should throw error when setting data with an undefined value', async (assert) => {
+              assert.expect(1);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+              const ref = db.collection('users').doc('user_a');
+
+              try {
+                // Act
+                await ref.set({ name: undefined });
+              } catch (e) {
+                // Assert
+                assert.ok(true);
+              }
+            });
+
+            QUnit.test('should throw error when setting data with a FieldValue.delete() value', async (assert) => {
+              assert.expect(1);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+              const ref = db.collection('users').doc('user_a');
+
+              try {
+                // Act
+                await ref.set({ name: _firebase2.default.firestore.FieldValue.delete() });
+              } catch (e) {
+                // Assert
+                assert.ok(true);
+              }
+            });
+          });
+
+          QUnit.module('function: update', () => {
+            QUnit.test('should update the data', async (assert) => {
+              assert.expect(10);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+              const ref = db.collection('users').doc('user_a');
+
+              // Act
+              await ref.update({
+                'address.work': 'Bay Area',
+                'contact.mobile': 12345,
+                age: _firebase2.default.firestore.FieldValue.delete(),
+                dad: db.collection('users').doc('user_b'),
+                modifiedOn: _firebase2.default.firestore.FieldValue.serverTimestamp(),
+                pinnedBooks: _firebase2.default.firestore.FieldValue.arrayUnion('book_100'),
+                pinnedFoods: _firebase2.default.firestore.FieldValue.arrayRemove('food_1'),
+                name: 'user_a',
+              });
+
+              // Assert
+              const snapshot = await ref.get();
+              const {
+                address,
+                age,
+                contact,
+                createdOn,
+                dad,
+                modifiedOn,
+                name,
+                pinnedBooks,
+                pinnedFoods,
+                username,
+              } = snapshot.data();
+
+              assert.deepEqual(address, { home: 'San Francisco', work: 'Bay Area' });
+              assert.equal(age, undefined);
+              assert.deepEqual(contact, { mobile: 12345 });
+              assert.deepEqual(createdOn.toDate(), new Date('2017-01-01'));
+              assert.deepEqual(dad, db.collection('users').doc('user_b'));
+              assert.ok(modifiedOn.toDate() instanceof Date);
+              assert.equal(name, 'user_a');
+              assert.deepEqual(pinnedBooks, ['book_1', 'book_2', 'book_100']);
+              assert.deepEqual(pinnedFoods, ['food_2']);
+              assert.equal(username, 'user_a');
+            });
+
+            QUnit.test('should throw error when updating data that does not exist', async (assert) => {
+              assert.expect(1);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+              const ref = db.collection('users').doc('user_100');
+
+              try {
+                // Act
+                await ref.update({ name: 'user_100' });
+              } catch (e) {
+                // Assert
+                assert.ok(true);
+              }
+            });
+
+            QUnit.test('should throw error when updating data with an undefined value', async (assert) => {
+              assert.expect(1);
+
+              // Arrange
+              const db = mockFirebase.firestore();
+              const ref = db.collection('users').doc('user_a');
+
+              try {
+                // Act
+                await ref.update({ name: undefined });
+              } catch (e) {
+                // Assert
+                assert.ok(true);
+              }
+            });
+          });
         });
 
         return function (_x21) {
@@ -949,7 +1172,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should return undefined when data does not exist', (() => {
-        var _ref22 = _asyncToGenerator(function* (assert) {
+        let _ref22 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -972,7 +1195,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
   QUnit.module('FieldValue', () => {
     QUnit.module('function: arrayUnion', () => {
-      QUnit.test('should return an array union representation', assert => {
+      QUnit.test('should return an array union representation', (assert) => {
         assert.expect(1);
 
         // Act
@@ -981,13 +1204,13 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         // Assert
         assert.deepEqual(result, {
           _methodName: 'FieldValue.arrayUnion',
-          _elements: ['foo', 'bar']
+          _elements: ['foo', 'bar'],
         });
       });
     });
 
     QUnit.module('function: arrayRemove', () => {
-      QUnit.test('should return an array union representation', assert => {
+      QUnit.test('should return an array union representation', (assert) => {
         assert.expect(1);
 
         // Act
@@ -996,13 +1219,13 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         // Assert
         assert.deepEqual(result, {
           _methodName: 'FieldValue.arrayRemove',
-          _elements: ['foo', 'bar']
+          _elements: ['foo', 'bar'],
         });
       });
     });
 
     QUnit.module('function: delete', () => {
-      QUnit.test('should return a delete field representation', assert => {
+      QUnit.test('should return a delete field representation', (assert) => {
         assert.expect(1);
 
         // Act
@@ -1014,7 +1237,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: serverTimestamp', () => {
-      QUnit.test('should return a server timestamp representation', assert => {
+      QUnit.test('should return a server timestamp representation', (assert) => {
         assert.expect(1);
 
         // Act
@@ -1028,7 +1251,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
   QUnit.module('Firestore', () => {
     QUnit.module('static getter/setter: FieldValue', () => {
-      QUnit.test('should return an instance of FieldValue', assert => {
+      QUnit.test('should return an instance of FieldValue', (assert) => {
         assert.expect(1);
 
         // Act
@@ -1040,7 +1263,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: collection', () => {
-      QUnit.test('should return the collection reference using a path', assert => {
+      QUnit.test('should return the collection reference using a path', (assert) => {
         assert.expect(2);
 
         // Arrange
@@ -1054,7 +1277,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.equal(result.id, 'friends');
       });
 
-      QUnit.test('should throw an error when getting collection reference on an even number of segment', assert => {
+      QUnit.test('should throw an error when getting collection reference on an even number of segment', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -1071,7 +1294,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: doc', () => {
-      QUnit.test('should return the document reference using a path', assert => {
+      QUnit.test('should return the document reference using a path', (assert) => {
         assert.expect(2);
 
         // Arrange
@@ -1085,7 +1308,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.equal(result.id, 'user_a');
       });
 
-      QUnit.test('should throw an error when getting doc reference on an even number of segment', assert => {
+      QUnit.test('should throw an error when getting doc reference on an even number of segment', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -1105,7 +1328,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
   QUnit.module('QuerySnapshot', () => {
     QUnit.module('getter/setter: docs', () => {
       QUnit.test('should return the documents for the query snapshot', (() => {
-        var _ref23 = _asyncToGenerator(function* (assert) {
+        let _ref23 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
@@ -1129,7 +1352,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('getter/setter: empty', () => {
       QUnit.test('should return true when there are no documents', (() => {
-        var _ref24 = _asyncToGenerator(function* (assert) {
+        let _ref24 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -1149,7 +1372,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should return false when there are documents', (() => {
-        var _ref25 = _asyncToGenerator(function* (assert) {
+        let _ref25 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -1171,7 +1394,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('getter/setter: size', () => {
       QUnit.test('should return the number of documents for the query snapshot', (() => {
-        var _ref26 = _asyncToGenerator(function* (assert) {
+        let _ref26 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -1193,7 +1416,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: forEach', () => {
       QUnit.test('should fire callback per each data', (() => {
-        var _ref27 = _asyncToGenerator(function* (assert) {
+        let _ref27 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -1217,7 +1440,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
   QUnit.module('Query', () => {
     QUnit.module('getter/setter: firestore', () => {
-      QUnit.test('should return the firestore the query is in', assert => {
+      QUnit.test('should return the firestore the query is in', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -1233,7 +1456,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: endAt', () => {
       QUnit.test('should return documents satisfying the query', (() => {
-        var _ref28 = _asyncToGenerator(function* (assert) {
+        let _ref28 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
@@ -1254,7 +1477,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should error when not doing orderBy()', (() => {
-        var _ref29 = _asyncToGenerator(function* (assert) {
+        let _ref29 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -1277,7 +1500,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: endBefore', () => {
       QUnit.test('should return documents satisfying the query', (() => {
-        var _ref30 = _asyncToGenerator(function* (assert) {
+        let _ref30 = _asyncToGenerator(function* (assert) {
           assert.expect(2);
 
           // Arrange
@@ -1297,7 +1520,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should error when not doing orderBy()', (() => {
-        var _ref31 = _asyncToGenerator(function* (assert) {
+        let _ref31 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -1320,7 +1543,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: limit', () => {
       QUnit.test('should return documents satisfying the query', (() => {
-        var _ref32 = _asyncToGenerator(function* (assert) {
+        let _ref32 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
@@ -1342,7 +1565,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
     });
 
     QUnit.module('function: onSnapshot', () => {
-      QUnit.test('should return a function for unsubscribing', assert => {
+      QUnit.test('should return a function for unsubscribing', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -1355,7 +1578,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         assert.ok(typeof result === 'function');
       });
 
-      QUnit.test('should fire callback', assert => {
+      QUnit.test('should fire callback', (assert) => {
         assert.expect(1);
 
         // Arrange
@@ -1363,7 +1586,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
         const db = mockFirebase.firestore();
 
         // Act
-        db.collection('users').orderBy('age').onSnapshot(snapshot => {
+        db.collection('users').orderBy('age').onSnapshot((snapshot) => {
           // Assert
           assert.ok(snapshot instanceof _querySnapshot2.default);
           done();
@@ -1373,7 +1596,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: orderBy', () => {
       QUnit.test('should return documents satisfying the query', (() => {
-        var _ref33 = _asyncToGenerator(function* (assert) {
+        let _ref33 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
@@ -1396,7 +1619,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: startAfter', () => {
       QUnit.test('should return documents satisfying the query', (() => {
-        var _ref34 = _asyncToGenerator(function* (assert) {
+        let _ref34 = _asyncToGenerator(function* (assert) {
           assert.expect(2);
 
           // Arrange
@@ -1416,7 +1639,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should error when not doing orderBy()', (() => {
-        var _ref35 = _asyncToGenerator(function* (assert) {
+        let _ref35 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -1439,7 +1662,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: startAt', () => {
       QUnit.test('should return documents satisfying the query', (() => {
-        var _ref36 = _asyncToGenerator(function* (assert) {
+        let _ref36 = _asyncToGenerator(function* (assert) {
           assert.expect(3);
 
           // Arrange
@@ -1460,7 +1683,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
       })());
 
       QUnit.test('should error when not doing orderBy()', (() => {
-        var _ref37 = _asyncToGenerator(function* (assert) {
+        let _ref37 = _asyncToGenerator(function* (assert) {
           assert.expect(1);
 
           // Arrange
@@ -1483,7 +1706,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
 
     QUnit.module('function: where', () => {
       QUnit.test('should return documents satisfying the query', (() => {
-        var _ref38 = _asyncToGenerator(function* (assert) {
+        let _ref38 = _asyncToGenerator(function* (assert) {
           assert.expect(2);
 
           // Arrange
@@ -1507,7 +1730,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
   QUnit.module('WriteBatch', () => {
     QUnit.module('function: commit', () => {
       QUnit.test('should commit all of the writes in the write batch', (() => {
-        var _ref39 = _asyncToGenerator(function* (assert) {
+        let _ref39 = _asyncToGenerator(function* (assert) {
           assert.expect(7);
 
           // Arrange
@@ -1539,7 +1762,7 @@ QUnit.module('Unit | mock-cloud-firestore', hooks => {
             age: snapshot3Age,
             createdOn: snapshot3CreatedOn,
             name: snapshot3Name,
-            username: snapshot3Username
+            username: snapshot3Username,
           } = snapshot3.data();
 
           assert.equal(snapshot3Age, 10);
