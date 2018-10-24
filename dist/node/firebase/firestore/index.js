@@ -33,6 +33,10 @@ class Firestore {
     return new _writeBatch2.default();
   }
 
+  runTransaction() {
+    return Promise.resolve(null);
+  }
+
   collection(id) {
     return this._getReference(id, 'collection');
   }

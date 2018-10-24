@@ -13,6 +13,10 @@ export default class Firestore {
     return new WriteBatch();
   }
 
+  runTransaction() {
+    return Promise.resolve(null);
+  }
+
   collection(id) {
     return this._getReference(id, 'collection');
   }
