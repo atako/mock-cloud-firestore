@@ -982,8 +982,16 @@ class Firestore {
     return new _writeBatch2.default();
   }
 
-  runTransaction() {
-    return Promise.resolve(null);
+  runTransaction(transFunc) {
+    const batch = this.batch();
+    batch.get = doc => doc.get();
+    return new Promise((resolve, reject) => {
+      Promise.resolve(transFunc(batch)).then(value => {
+        batch.commit().then(() => {
+          resolve(value);
+        }).catch(reject);
+      }).catch(reject);
+    });
   }
 
   collection(id) {
@@ -996,6 +1004,14 @@ class Firestore {
 
   settings(settings) {
     this._settings = settings;
+  }
+
+  clearData() {
+    this._data = {};
+  }
+
+  refillData(data) {
+    this._data = data;
   }
 
   _collection(id) {
@@ -1199,6 +1215,9 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 class WriteBatch {
   constructor() {
     this._writeBatch = { delete: [], set: [], update: [] };
@@ -1230,6 +1249,15 @@ class WriteBatch {
 
   update(ref, data) {
     this._writeBatch.update.push({ ref, data });
+  }
+
+  getAll(listOfDocs) {
+    return _asyncToGenerator(function* () {
+      const docRefs = Array.from(listOfDocs);
+      return Promise.all(docRefs.map(function (doc) {
+        return doc.get();
+      }));
+    })();
   }
 }
 exports.default = WriteBatch;
