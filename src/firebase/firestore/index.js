@@ -13,8 +13,19 @@ export default class Firestore {
     return new WriteBatch();
   }
 
-  runTransaction() {
-    return Promise.resolve(null);
+  runTransaction(transFunc) {
+    const batch = this.batch();
+    batch.get = (doc => doc.get());
+    return new Promise(((resolve, reject) => {
+      Promise.resolve(transFunc(batch)).then((value) => {
+        batch
+          .commit()
+          .then(() => {
+            resolve(value);
+          })
+          .catch(reject);
+      }).catch(reject);
+    }));
   }
 
   collection(id) {
@@ -27,6 +38,14 @@ export default class Firestore {
 
   settings(settings) {
     this._settings = settings;
+  }
+
+  clearData() {
+    this._data = {};
+  }
+
+  refillData(data) {
+    this._data = data;
   }
 
   _collection(id) {
