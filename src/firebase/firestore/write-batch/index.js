@@ -32,7 +32,7 @@ export default class WriteBatch {
   }
 
   async getAll(listOfDocs) {
-    const docRefs = Array.from(listOfDocs);
+    const docRefs = Array.from(arguments);
     return Promise.all(docRefs.map(doc => doc.get()));
   }
 }

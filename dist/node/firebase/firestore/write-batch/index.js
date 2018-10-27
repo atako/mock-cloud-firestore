@@ -40,8 +40,9 @@ class WriteBatch {
   }
 
   getAll(listOfDocs) {
+    var _arguments = arguments;
     return _asyncToGenerator(function* () {
-      const docRefs = Array.from(listOfDocs);
+      const docRefs = Array.from(_arguments);
       return Promise.all(docRefs.map(function (doc) {
         return doc.get();
       }));
