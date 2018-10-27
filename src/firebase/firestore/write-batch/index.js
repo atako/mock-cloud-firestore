@@ -30,4 +30,9 @@ export default class WriteBatch {
   update(ref, data) {
     this._writeBatch.update.push({ ref, data });
   }
+
+  async getAll(listOfDocs) {
+    const docRefs = Array.from(listOfDocs);
+    return Promise.all(docRefs.map(doc => doc.get()));
+  }
 }
